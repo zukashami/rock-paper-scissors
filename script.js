@@ -37,3 +37,20 @@ function playRound() {
         console.log(computerPoints += 1 );
     }
 }
+
+function playGame() {
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    if (playerPoints > computerPoints) {
+        console.log("Player Wins! Score: "+playerPoints+ " : " +computerPoints);
+    } else if (playerPoints < computerPoints) {
+        console.log("Computer Wins! Score: "+playerPoints+ " : " +computerPoints);
+    } else {
+        console.log("Its a draw! Score: "+playerPoints+ " : " +computerPoints);
+    }
+}
+
+playGame();
