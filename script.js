@@ -10,47 +10,84 @@ function getComputerChoice() {
 
 let playerPoints = 0;
 let computerPoints = 0;
+let playerSelection;
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playerSelection = button.id;
+        playRound();
+    })
+})
 
 function playRound() {
     let computerSelection = getComputerChoice();
-    let playerSelection = prompt("Please choose Rock, Paper or Scissors").toLowerCase();
 
-    console.log("Player: "+ playerSelection);
-    console.log("Computer: "+ computerSelection);
+    const result = document.querySelector("#result");
 
+    const playerSelectionView = document.createElement("h3");
+    playerSelectionView.textContent = "Player's choice: "+ playerSelection;
+    const computerSelectionView = document.createElement("h3");
+    computerSelectionView.textContent = "Computer's choice: "+ computerSelection;
+
+    result.appendChild(playerSelectionView);
+    result.appendChild(computerSelectionView);
+    //console.log("Player: "+ playerSelection);
+    //console.log("Computer: "+ computerSelection);
+
+    const points = document.createElement("h2");
+    
     if (playerSelection === computerSelection) {
-        console.log(playerPoints += 0 );
-        console.log(computerPoints += 0 );
+        points.textContent = ("Player's points: "+(playerPoints += 0)+ " Computer's points: " +(computerPoints += 0));
     } else if ((playerSelection === choicePaper) && (computerSelection === choiceRock)) {
-        console.log(playerPoints += 1);
-        console.log(computerPoints += 0 );
+        points.textContent = ("Player's points: "+(playerPoints += 1)+ " Computer's points: " +(computerPoints += 0));
     } else if ((playerSelection === choiceRock) && (computerSelection === choiceScissors)) {
-        console.log(playerPoints += 1); 
-        console.log(computerPoints += 0 );
+        points.textContent = ("Player's points: "+(playerPoints += 1)+ " Computer's points: " +(computerPoints += 0));
     } else if ((playerSelection === choiceScissors) && (computerSelection === choicePaper)) {
-        console.log(playerPoints += 1);
-        console.log(computerPoints += 0 );
-    } else if ((playerSelection != choicePaper) || (playerSelection != choiceRock) || (playerSelection != choiceScissors)) {
-        console.log("Wrong input. Choose again!");
+        points.textContent = ("Player's points: "+(playerPoints += 1)+ " Computer's points: " +(computerPoints += 0));
     } else {
-        console.log(playerPoints += 0);
-        console.log(computerPoints += 1 );
+        points.textContent = ("Player's points: "+(playerPoints += 0)+ " Computer's points: " +(computerPoints += 1));
     }
+
+    const gameOutput = document.createElement("h1");
+
+    if (playerPoints === 5) {
+        gameOutput.textContent = "Player Wins! Score: "+playerPoints+ " : " +computerPoints;
+    } else if (computerPoints === 5) {
+        gameOutput.textContent = "Computer Wins! Score: "+playerPoints+ " : " +computerPoints;
+    } else {
+        gameOutput.textContent = "";
+    }
+
+    result.appendChild(points);
+    result.appendChild(gameOutput);
 }
 
-function playGame() {
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    if (playerPoints > computerPoints) {
-        console.log("Player Wins! Score: "+playerPoints+ " : " +computerPoints);
-    } else if (playerPoints < computerPoints) {
-        console.log("Computer Wins! Score: "+playerPoints+ " : " +computerPoints);
-    } else {
-        console.log("Its a draw! Score: "+playerPoints+ " : " +computerPoints);
-    }
-}
+// function playGame() {
 
-playGame();
+//     let i = 0;
+
+//     while (i < Infinity) {
+//         if ((playerPoints === 5) || (computerPoints === 5)) {
+//             break;
+//         }
+//         playRound();
+//         i++;
+//     } 
+        
+
+//         const gameOutput = document.createElement("h1");
+
+//         if (playerPoints > computerPoints) {
+//             gameOutput.textContent = "Player Wins! Score: "+playerPoints+ " : " +computerPoints;
+//         } else if (playerPoints < computerPoints) {
+//             gameOutput.textContent = "Computer Wins! Score: "+playerPoints+ " : " +computerPoints;
+//         } else {
+//             gameOutput.textContent = "Its a draw! Score: "+playerPoints+ " : " +computerPoints;
+//         }
+
+//     result.appendChild(gameOutput);
+// }
+
+
